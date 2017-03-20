@@ -249,8 +249,7 @@ export class GuiAnimeSample1Component implements OnInit {
 ---
 ## Sample2
 ### ANGULAR DOCSのボタンを真似してみる
-
-<a style='position:absolute; left:25%; top:35%;' href='https://angular.io/docs/ts/latest/'>
+<a style='position:absolute; left:10%; top:35%;' href='https://angular.io/docs/ts/latest/'>
 Angular Docs - ts - INDEX - Angular
 </a>
 ---
