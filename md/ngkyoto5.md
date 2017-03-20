@@ -342,13 +342,14 @@ bool値を返す関数に置き換えることが可能に。
 
 ---
 ## Impressions
-#### ・ 思った以上に簡単にアニメーション出来てすごい!(こなみかん)
-#### ・ アニメーションをインスタンスとして扱えると便利そう。<br>(AnimationPlayerだと解決できる…?)
+#### ・ 思った以上に簡単にアニメーション出来てすごい!<br>
+　　　　(こなみかん)
+#### ・ アニメーションをインスタンスとして扱えると便利そう。<br>
+　　　　(AnimationPlayerだと解決できる…?)
 ---
 ## References
 * [Animations - ts - GUIDE - Angular](https://angular.io/docs/ts/latest/guide/animations.html)
-* [ng2-hands-on-seed
- - ng-japan - GitHub](https://github.com/ng-japan/ng2-hands-on-seed/tree/master/courses/tutorial)
+* [ng2-hands-on-seed ‐ ng-japan ‐ GitHub](https://github.com/ng-japan/ng2-hands-on-seed/tree/master/courses/tutorial)
 * [[Angular 4.0] router/http/animationsモジュールの更新について | <output type="laco">](https://blog.lacolaco.net//post/ng4-feature-libs-update/)
 * [
 〜なんだかいけそうな気がする〜Angular入門 - Speaker Deck](https://speakerdeck.com/kozake/nandakaikesounaqi-gasuru-angularru-men)
