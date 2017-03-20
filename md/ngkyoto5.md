@@ -1,8 +1,8 @@
 <div style='position:absolute; left:25%; top:35%;'>
     <h1>Angularで<br>GUI Animation</h1>
 </div>
-<div style='position:absolute; right: 20%; bottom:5%;'>
-2017.03.20 @ng-kyoto meetup
+<div style='position:absolute; right: 10%; bottom:10%;'>
+    <h4>2017.03.20 @ng-kyoto Angular Meetup #5</h4>
 </div>
 
 ---
@@ -17,8 +17,8 @@
 ### GitHub: https://github.com/masanori840816
 ---
 ## Theme
-<div style='position:absolute; left:5%; top:35%;'>
-    <h2>Angularを使ってGUIをアニメーションさせる</h2>
+<div style='position:absolute; left:10%; top:35%;'>
+    <h3>Angularを使ってGUI部品をアニメーションさせる</h3>
 </div>
 ---
 ## Sample
@@ -55,11 +55,29 @@ import { Component,Input,trigger,state,style,
       transition('inactive => active', animate('0ms 200ms ease-in')),
       transition('active => inactive', animate('0ms 200ms ease-out'))
     ])
-  ]
-})
+]})
 ```
 ---
-## Sample1 Code1
+## Sample1 Code2
+### gui-anime-sample-1.component.ts
+``` xml
+export class GuiAnimeSample1Component implements OnInit {
+  private state: string;
+  constructor() { }
+
+  ngOnInit() {
+    this.state = 'inactive';
+  }
+  private onButtonClicked(){
+    this.state = (this.state === 'active')? 'inactive': 'active'; 
+  }
+  private onAnimeDone(){
+    // TODO: アニメーション完了後の処理.
+  }
+}
+```
+---
+## Sample1 Code3
 ### Animations
 #### お話の中心はこの辺り
 ``` xml
@@ -79,16 +97,28 @@ animations: [
   ]
 ```
 ---
-## Sample1 Code2
+## Sample1 Code4
+#### このコードは大きく3つに分けられる
+### 1. Trigger
+アニメーション開始のきっかけを指定する。
+
+### 2. State
+アニメーションの開始前・完了後の状態を指定する。
+
+### 3. Transition
+どうアニメーションするかを指定する。
+
+---
+## Sample1 Code5
 ### Trigger
 トリガーとして指定された"buttonState"の値が変わるとアニメーション実行
 ``` xml
 trigger('buttonState', [
 ```
 ---
-## Sample1 Code3
+## Sample1 Code6
 ### State
-ここでは2つの状態を設定して、<br>
+ここでは2つの状態を設定して("inactive"、"active")、<br>
 アニメーションでそれらをなめらかにつなぐ
 
 ``` xml
@@ -102,7 +132,7 @@ state('active',   style({
 })),
 ```
 ---
-## Sample1 Code4
+## Sample1 Code7
 ### Transition
 アニメーションで切り替える状態と、<br>
 どんな風にアニメーションするかを指定する。
@@ -111,29 +141,27 @@ transition('inactive => active', animate('0ms 200ms ease-in')),
 transition('active => inactive', animate('0ms 200ms ease-out'))
 ```
 ---
-## Wildcard & Void
-### * (Wildcard)
+## Sample1 Code8
+### Wildcard & Void
+#### * (Wildcard)
 任意の状態として扱うことができる。
 
 複数種類の状態からひとつの状態へと切り替える場合、<br>
 状態に関係なく処理したい場合などに有用。
 
-#### 例
+##### 例
 ``` xml
 transition('inactive => *', animate('0ms 200ms ease-in')),
 ```
-
-### Void
+#### Void
 任意の状態として扱うことができる。
 
 Wildcardとの違いは、
 アニメーション対象の要素がまだ存在しない、<br>
-または要素が削除される場合にも使用可能。
-
+または要素が削除される場合にも使用可能。<br>
 …らしい。
-
 ---
-## Sample1 Code5
+## Sample1 Code9
 ### Animate
 どんな風にアニメーションするかを指定する。
 
@@ -146,14 +174,16 @@ Wildcardとの違いは、
 animate('0ms 200ms ease-in')
 ```
 ---
-## Easing
+## Sample1 Code10
+### Easing1
 速度を一定ではなく緩急をつけることで、<br>
 より自然なアニメーションを実現する。
 
-### Easingの例
+#### Easingの例
 * [Easing Function 早見表](http://easings.net/ja)
 ---
-## Easing
+## Sample1 Code11
+### Easing2
 ※ただしCSSでは全てを選択できるわけでなく、<br>
 下記から選択するかまたはベジェ曲線で指定する必要がある。
 
@@ -165,8 +195,8 @@ animate('0ms 200ms ease-in')
 * cubic-bezier() （カスタム）
 
 ---
-## Sample1 Code6
-### トリガーを引く
+## Sample1 Code12
+### アニメーションの実行1
 Buttonにトリガーとなる"buttonState"を関連付け、<br>
 クリックでその値を変更することでアニメーションを実行する。
 
@@ -177,8 +207,8 @@ Buttonにトリガーとなる"buttonState"を関連付け、<br>
      (@buttonState.done)='onAnimeDone()'>Sample1</button>
 ```
 ---
-## Sample1 Code7
-### トリガーを引く2
+## Sample1 Code13
+### アニメーションの実行2
 #### gui-anime-sample-1.component.ts
 ``` xml
 export class GuiAnimeSample1Component implements OnInit {
@@ -197,7 +227,7 @@ export class GuiAnimeSample1Component implements OnInit {
 }
 ```
 ---
-## Sample1 Code8
+## Sample1 Code14
 ### アニメーションの開始・終了イベント
 アニメーション開始時、終了時に別の処理を実行したい場合、<br>
 トリガーである”buttonState”を使ってイベントを取得できる
@@ -218,9 +248,9 @@ export class GuiAnimeSample1Component implements OnInit {
 ```
 ---
 ## Sample2
-### ANGULAR DOCSのボタンを真似してみる。
+### ANGULAR DOCSのボタンを真似してみる
 
-<a style='position:absolute; left:5%; top:30%;' href='https://angular.io/docs/ts/latest/'>
+<a style='position:absolute; left:25%; top:35%;' href='https://angular.io/docs/ts/latest/'>
 Angular Docs - ts - INDEX - Angular
 </a>
 ---
@@ -261,12 +291,13 @@ import { SampleButton } from '../sample-button';
       transition('active => inactive', animate('200ms ease-in')),
       transition('inactive => active', animate('200ms ease-out'))
     ])
-]})
 ```
 ---
 ## Sample2 Code2
 #### gui-anime-sample-2.component.ts
 ``` xml
+  ]
+})
 export class GuiAnimeSample2Component implements OnInit {
   private sampleButtons: SampleButton[] = [
     {id: 0, pageTitle: 'Page1', discription: 'Page No.1', state: 'inactive'},
@@ -297,7 +328,7 @@ export class GuiAnimeSample2Component implements OnInit {
 CSSのアニメーションを利用しているので、<br>
 方法はあるはず。
 
-[AnimationPlayer]()を使えば解決できそう…？
+[AnimationPlayer](https://angular.io/docs/ts/latest/api/core/index/AnimationPlayer-class.html)を使えば解決できそう…？
 
 ---
 ## What's new in ver.4.0?
@@ -310,18 +341,21 @@ transitionの”inactive => active”を、<br>
 アニメーション実行前の状態、実行後の状態を引数に取り、<br>
 bool値を返す関数に置き換えることが可能に。
 
---- 
-
+---
 ## Impressions
-* 思った以上に簡単にアニメーション出来てすごい!(こなみかん)
-* アニメーションをインスタンスとして扱えると便利そう<br>
-(AnimationPlayerだと解決…?)
+#### ・ 思った以上に簡単にアニメーション出来てすごい!(こなみかん)
+#### ・ アニメーションをインスタンスとして扱えると便利そう。<br>(AnimationPlayerだと解決できる…?)
 ---
 ## References
-###
-###
-### Angular ver.4.0
-* []()
+* [Animations - ts - GUIDE - Angular](https://angular.io/docs/ts/latest/guide/animations.html)
+* [ng2-hands-on-seed
+ - ng-japan - GitHub](https://github.com/ng-japan/ng2-hands-on-seed/tree/master/courses/tutorial)
+* [[Angular 4.0] router/http/animationsモジュールの更新について | <output type="laco">](https://blog.lacolaco.net//post/ng4-feature-libs-update/)
+* [
+〜なんだかいけそうな気がする〜Angular入門 - Speaker Deck](https://speakerdeck.com/kozake/nandakaikesounaqi-gasuru-angularru-men)
+* [Angular2 animation - Qiita](http://qiita.com/kawakami-kazuyoshi/items/639cbe55da4cd1c1df80)
+* [Episode 103: ngAir 103 - Animation in Angular with Matias Niemela - AngularAir](http://ngair.io/ep103-2017)
+* [Angular 2 Cookbook](http://shop.oreilly.com/product/9781785881923.do)
 ---
 <div style='position:absolute; left:25%; top:35%;'>
     <h1>Have a nice day!</h1>
